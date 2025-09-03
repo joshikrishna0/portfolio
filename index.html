@@ -1,108 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vinod Ghodke - Portfolio</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f4f9;
-      color: #333;
+    :root{
+      --navy-1:#0a1f44;   /* primary navy */
+      --navy-2:#142c5a;   /* darker navy for depth */
+      --page:#0f1e3a;     /* page background (similar but different) */
+      --ink:#1f2937;      /* dark text for cards */
+      --card:#ffffff;     /* card background */
     }
-    header {
-      background: linear-gradient(135deg, #0a1f44, #142c5a);
-      color: white;
-      padding: 120px 20px 40px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+
+    /* Base */
+    html,body{margin:0}
+    body{
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--page);
+      color:#e8eef9;
+      line-height:1.6;
+      scroll-behavior:smooth;
     }
-    .profile-pic {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      border: 6px solid white;
-      object-fit: cover;
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+
+    /* Header */
+    header{
+      background: linear-gradient(135deg,var(--navy-1),var(--navy-2));
+      color:#fff;
+      padding: 120px 20px 48px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
     }
-    header h1 { font-size: 2.5rem; margin-top: 180px; }
-    header p { margin: 6px 0; font-size: 1.1rem; }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      background: #142c5a;
-      padding: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+    .profile-pic{
+      width:168px;height:168px;border-radius:50%;
+      border:6px solid #fff; object-fit:cover;
+      position:absolute; left:50%; top:20px; transform:translateX(-50%);
+      box-shadow:0 10px 28px rgba(0,0,0,.35);
     }
-    nav a {
-      text-decoration: none;
-      color: #ffffff;
-      font-weight: 500;
+    header h1{margin: 180px 0 6px; font-size:2.6rem; letter-spacing:.3px;}
+    header p{margin:4px 0; font-size:1.05rem;}
+    header a{color:#fff; text-decoration:underline; text-underline-offset:2px}
+
+    /* Nav */
+    nav{
+      position:sticky; top:0; z-index:1000;
+      display:flex; justify-content:center; gap:20px;
+      background:var(--navy-2);
+      padding:12px 16px;
+      box-shadow:0 6px 14px rgba(0,0,0,.28);
+      backdrop-filter:saturate(130%) blur(4px);
     }
-    section {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px;
-      opacity: 0;
-      transform: scale(0.95);
-      transition: all 0.6s ease-out;
+    nav a{
+      color:#fff; text-decoration:none; font-weight:600;
+      opacity:.95;
     }
-    section.visible {
-      opacity: 1;
-      transform: scale(1);
+    nav a:hover{opacity:1; text-decoration:underline; text-underline-offset:3px;}
+
+    /* Sections */
+    section{
+      max-width:1000px; margin:42px auto; padding:0 20px;
+      opacity:0; transform:scale(.96) translateY(14px);
+      transition:transform .65s cubic-bezier(.2,.75,.2,1), opacity .65s ease-out;
+      transform-origin:center top;
+      will-change:transform,opacity;
     }
-    h2 { color: #0a1f44; margin-bottom: 15px; }
-    .skills, .experience, .projects, .education { display: grid; gap: 20px; }
-    .card {
-      background: #fff;
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      transition: transform 0.2s, box-shadow 0.2s;
+    section.visible{opacity:1; transform:scale(1) translateY(0)}
+    h2{
+      margin:0 0 14px; font-size:1.6rem; letter-spacing:.2px;
+      color:#e9f1ff;
     }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+    /* Cards */
+    .grid{display:grid; gap:20px}
+    .card{
+      background:var(--card);
+      color:var(--ink);
+      padding:24px;
+      border-radius:16px;
+      box-shadow:0 10px 28px rgba(0,0,0,.18);
+      transition:transform .2s ease, box-shadow .2s ease;
     }
-    .card h3 { margin-top: 0; color: #142c5a; }
-    footer {
-      background: #0a1f44;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
+    .card:hover{transform:translateY(-4px); box-shadow:0 16px 36px rgba(0,0,0,.26)}
+    .card h3{margin:0 0 10px; color:var(--navy-2)}
+    .split{display:grid; gap:14px}
+    @media(min-width:720px){ .split{grid-template-columns:1fr 1fr} }
+
+    /* Footer & DOB */
+    .dob{
+      max-width:1000px; margin:10px auto 0; padding:0 20px 10px;
+      text-align:center; color:#d7e3ff; font-size:1rem;
     }
-    .contact a {
-      color: #0a1f44;
-      text-decoration: none;
-      font-weight: bold;
+    footer{
+      background:var(--navy-1); color:#fff; text-align:center;
+      padding:20px; margin-top:16px;
     }
-    .dob {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 1rem;
-      color: #333;
+
+    /* Accessibility: reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      section{transition:none; opacity:1; transform:none}
+      .card{transition:none}
     }
   </style>
 </head>
 <body>
+  <!-- Your uploaded photo: place this JPG next to the HTML file -->
   <header>
-    <!-- Replace with your uploaded image -->
-    <img src="NBJ_5119 - Copy - Copy.JPG" alt="Profile Picture" class="profile-pic">
+    <img src="NBJ_5119 - Copy - Copy.JPG" alt="Vinod Ghodke" class="profile-pic" />
     <h1>Vinod Ghodke</h1>
-    <p>Operations Manager | 11+ Years of Experience</p>
-    <p><a href="mailto:joshikrishna0@gmail.com" style="color:white;">joshikrishna0@gmail.com</a> | +91-9819504340 | Navi Mumbai, India</p>
-    <p><a href="https://www.linkedin.com/in/vinod-ghodke-0a476b93/" target="_blank" style="color:white;">LinkedIn Profile</a></p>
+    <p>Operations Manager • 11+ Years of Experience</p>
+    <p>
+      <a href="mailto:joshikrishna0@gmail.com">joshikrishna0@gmail.com</a> •
+      +91-9819504340 • Navi Mumbai, India
+    </p>
+    <p><a href="https://www.linkedin.com/in/vinod-ghodke-0a476b93/" target="_blank" rel="noopener">LinkedIn Profile</a></p>
   </header>
 
   <nav>
@@ -110,22 +121,160 @@
     <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
     <a href="#education">Education</a>
+    <a href="#additional">Additional</a>
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- Keep your About, Skills, Experience, Projects, Education, Contact sections from previous code -->
-  
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="card">
+      <p>
+        Results-driven Operations Manager with 11+ years of expertise in process optimization, stakeholder management, and learning administration. Adept at leading cross-functional teams, driving operational efficiency, and ensuring compliance with industry standards. Skilled in Agile methodologies, budgeting, risk management, and LMS administration. Passionate about continuous improvement and fostering a high-performance culture.
+      </p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Core Competencies</h3>
+        <p>Stakeholder Management, Team Management, KPO, Analytical Skills, Change Management, Operational Excellence, Organizational Development, Cross-Functional Coordination, Employee Development, Performance Management, Workflows, SOP Development, Risk Mitigation, SIPOC, Agile Methodology, Instructional Design, Process Optimization.</p>
+      </div>
+      <div class="card">
+        <h3>Tools & Platforms</h3>
+        <p>LMS (SuccessFactors), Quickbase, ServiceNow, Oracle Siebel, MS Excel, Articulate 360, SharePoint.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2>Work Experience</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Operations Manager — medtigo <span style="font-weight:600;">(May 2025 – Present)</span></h3>
+        <ul>
+          <li>Led end-to-end project execution across departments, ensuring timely delivery and quality standards.</li>
+          <li>Streamlined workflows to improve efficiency and reduce turnaround time.</li>
+          <li>Aligned goals with stakeholders; maintained transparent updates and feedback loops.</li>
+          <li>Managed cross-functional teams (UI/UX, marketing, analytics, support) to drive outcomes.</li>
+          <li>Designed training programs, mentored team members, and built KPI dashboards for data-driven decisions.</li>
+          <li>Analyzed workflows; introduced automation/standardization to enhance quality and reduce manual effort.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Operations Lead — Accenture <span style="font-weight:600;">(Jun 2019 – Jan 2025)</span></h3>
+        <ul>
+          <li>Drove Lean initiatives, improving operational efficiency by 20%.</li>
+          <li>Designed training with Articulate 360; enhanced learning outcomes and adoption.</li>
+          <li>Optimized LMS operations; reduced downtime by 30% via proactive issue resolution.</li>
+          <li>Led a team of 7 analysts; exceeded SLAs by 15% and scaled global training programs.</li>
+          <li>Built and maintained process documentation (SIPOC, HLPM, DLPM, FMEA, SOPs).</li>
+          <li>Managed budgeting and cost control; improved resource allocation.</li>
+          <li>Collaborated across reporting, content, vendor management, and IT for seamless onboarding/projects.</li>
+          <li>Identified 50+ organizational skill gaps with department heads and addressed them via learning plans.</li>
+          <li>Planned 450+ training sessions in 90 days; achieved 95% session completion; improved user adoption by 25%.</li>
+          <li>Expert user of SuccessFactors, Quickbase, ServiceNow, Oracle Siebel, and MS Excel.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Certifications Analyst — Accenture <span style="font-weight:600;">(May 2016 – Jun 2019)</span></h3>
+        <ul>
+          <li>Conducted compliance audits and analytics with 100% adherence to standards.</li>
+          <li>Created job aids, process roadmaps, and SOPs/DTPs, improving workflow efficiency by 15%.</li>
+          <li>Provided end-to-end employee support via email, Teams, and calls.</li>
+          <li>Managed ServiceNow & SharePoint to track training records and streamline workflows.</li>
+          <li>Led UAT; resolved 95% of reported bugs pre-implementation.</li>
+          <li>Supported HR leadership on engagement initiatives and learning programs.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Healthcare & Insurance Operations Associate — Accenture <span style="font-weight:600;">(Apr 2014 – May 2016)</span></h3>
+        <ul>
+          <li>Processed claims, refunds, and invoices with 99% accuracy.</li>
+          <li>Investigated and resolved issues, reducing processing time by 25%.</li>
+          <li>Provided quality assurance support; identified inefficiencies and recommended solutions.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Key Projects</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Enterprise LMS Transformation</h3>
+        <p>Led transition from legacy LMS to SuccessFactors, improving system efficiency by 40% and conducting training for 300+ employees to ensure smooth adoption.</p>
+      </div>
+      <div class="card">
+        <h3>Annual Learning Plan Management</h3>
+        <p>Coordinated 450+ training sessions within 90 days, optimizing vendor and resource allocation and achieving a 95% completion rate.</p>
+      </div>
+      <div class="card">
+        <h3>Process Quality Improvement</h3>
+        <p>Identified bottlenecks and implemented Lean methods, improving process efficiency by 20% and increasing team performance scores by 15% with new QA metrics.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <div class="card">
+      <ul>
+        <li>Project Management Foundations</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="grid">
+      <div class="card">
+        <p><strong>B.A. (Philosophy)</strong> — Ramnarain Ruia College, Mumbai</p>
+        <p><strong>HSC (Arts)</strong> — KJ Somaiya College, Maharashtra</p>
+        <p><strong>SSC</strong> — SVSHV Maharashtra (2009)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADDITIONAL -->
+  <section id="additional">
+    <h2>Additional Information</h2>
+    <div class="split">
+      <div class="card">
+        <h3>Hobbies</h3>
+        <p>Reading books, editing & creating videos, watching stories</p>
+      </div>
+      <div class="card">
+        <h3>Languages</h3>
+        <p>English, Hindi, Marathi</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
   <section id="contact">
     <h2>Contact</h2>
     <div class="card">
       <p>📧 <a href="mailto:joshikrishna0@gmail.com">joshikrishna0@gmail.com</a></p>
       <p>📞 +91-9819504340</p>
-      <p>🔗 <a href="https://www.linkedin.com/in/vinod-ghodke-0a476b93/" target="_blank">LinkedIn</a></p>
+      <p>🔗 <a href="https://www.linkedin.com/in/vinod-ghodke-0a476b93/" target="_blank" rel="noopener">linkedin.com/in/vinod-ghodke-0a476b93/</a></p>
       <p>📍 Navi Mumbai, India</p>
     </div>
   </section>
 
+  <!-- DOB at bottom -->
   <div class="dob">
     <p><strong>Date of Birth:</strong> 27 May 1993</p>
   </div>
@@ -135,19 +284,18 @@
   </footer>
 
   <script>
-    // Scroll stretch effect
-    const sections = document.querySelectorAll("section");
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
+    // Stretch/scale-in on scroll (sections and cards)
+    const targets = document.querySelectorAll("section, .card");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.18 });
 
-    sections.forEach(section => {
-      observer.observe(section);
-    });
+    targets.forEach(t => io.observe(t));
   </script>
 </body>
 </html>
