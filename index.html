@@ -38,7 +38,7 @@
       box-shadow:0 10px 28px rgba(0,0,0,.35);
     }
     header h1{margin: 180px 0 6px; font-size:2.6rem; letter-spacing:.3px;}
-    header h2{margin:6px 0; font-size:1.6rem; font-weight:400;}
+    header h2{margin:6px 0; font-size:1.8rem; font-weight:600;}
     header p{margin:4px 0; font-size:1rem;}
     header a{color:#fff; text-decoration:underline; text-underline-offset:2px}
 
@@ -57,11 +57,11 @@
     }
     nav a:hover{opacity:1; text-decoration:underline; text-underline-offset:3px;}
 
-    /* Sections */
+    /* Sections with stronger stretch */
     section{
       max-width:1000px; margin:42px auto; padding:0 20px;
-      opacity:0; transform:scale(.96) translateY(14px);
-      transition:transform .65s cubic-bezier(.2,.75,.2,1), opacity .65s ease-out;
+      opacity:0; transform:scale(.85) translateY(40px);
+      transition:transform .9s cubic-bezier(.2,.75,.2,1), opacity .9s ease-out;
       transform-origin:center top;
       will-change:transform,opacity;
     }
@@ -90,6 +90,12 @@
       background:#e9f1ff; color:var(--navy-1);
       font-size:.85rem; padding:4px 10px;
       border-radius:12px; display:inline-block;
+    }
+
+    /* Side-by-side Hobbies & Languages */
+    .two-col{display:grid; gap:20px;}
+    @media(min-width:720px){
+      .two-col{grid-template-columns:1fr 1fr;}
     }
 
     /* Footer */
@@ -240,26 +246,26 @@
 
   <!-- Additional -->
   <section id="additional">
-  <h2>Additional Information</h2>
-  <div class="two-col">
-    <div class="card">
-      <h3>Hobbies</h3>
-      <div class="tags">
-        <span class="tag">Reading Books</span>
-        <span class="tag">Editing & Creating Videos</span>
-        <span class="tag">Watching Stories</span>
+    <h2>Additional Information</h2>
+    <div class="two-col">
+      <div class="card">
+        <h3>Hobbies</h3>
+        <div class="tags">
+          <span class="tag">Reading Books</span>
+          <span class="tag">Editing & Creating Videos</span>
+          <span class="tag">Watching Stories</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Languages</h3>
+        <div class="tags">
+          <span class="tag">English</span>
+          <span class="tag">Hindi</span>
+          <span class="tag">Marathi</span>
+        </div>
       </div>
     </div>
-    <div class="card">
-      <h3>Languages</h3>
-      <div class="tags">
-        <span class="tag">English</span>
-        <span class="tag">Hindi</span>
-        <span class="tag">Marathi</span>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- Personal Info -->
   <section id="personal">
@@ -290,4 +296,3 @@
   </script>
 </body>
 </html>
-
