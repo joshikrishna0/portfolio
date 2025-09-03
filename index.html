@@ -10,9 +10,7 @@
       --navy-2:#142c5a;
       --page:#0f1e3a;
       --ink:#1f2937;
-      --card1:#ffffff;
-      --card2:#f5f8ff;
-      --card3:#eef2f7;
+      --card:#f9fbff; /* light blue-white */
       --nav-hover:#1d3a6d;
     }
 
@@ -39,7 +37,10 @@
       position:absolute;left:50%;top:20px;transform:translateX(-50%);
       box-shadow:0 12px 30px rgba(0,0,0,.45);
     }
-    header h1{margin:150px 0 6px;font-size:2.6rem;}
+    header h1{
+      margin:110px 0 6px; /* reduced gap */
+      font-size:2.6rem;
+    }
     header h2{margin:6px 0;font-size:1.8rem;font-weight:600;}
     header p{margin:4px 0;font-size:1rem;}
     header a{color:#fff;text-decoration:underline;text-underline-offset:2px}
@@ -82,15 +83,13 @@
     /* Cards */
     .grid{display:grid;gap:20px}
     .card{
+      background:var(--card);
       padding:24px;
       border-radius:16px;
       box-shadow:0 14px 36px rgba(0,0,0,.35);
       transition:transform .2s ease, box-shadow .2s ease;
       color:var(--ink);
     }
-    .card:nth-child(3n+1){background:var(--card1);}
-    .card:nth-child(3n+2){background:var(--card2);}
-    .card:nth-child(3n+3){background:var(--card3);}
     .card:hover{transform:translateY(-6px);box-shadow:0 18px 48px rgba(0,0,0,.45);}
     .card h3{margin:0 0 10px;color:var(--navy-2)}
 
